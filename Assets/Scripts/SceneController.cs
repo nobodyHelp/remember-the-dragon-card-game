@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class SceneController : MonoBehaviour
     private MemoryCard originalCard;
     [SerializeField]
     private Sprite[] images;
+
+    [SerializeField]
+    private TextMesh scoreLabel;
 
     void Start()
     {
@@ -87,7 +91,7 @@ public class SceneController : MonoBehaviour
         if (_firstRevealed.id == _secondRevealed.id)
         {
             _score++;
-            Debug.Log("Score: " + _score);
+            scoreLabel.text = "Score: " + _score;
         }
         else
         {
@@ -99,5 +103,10 @@ public class SceneController : MonoBehaviour
 
         _firstRevealed = null;
         _secondRevealed = null;
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 }
